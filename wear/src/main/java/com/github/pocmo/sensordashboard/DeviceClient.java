@@ -108,9 +108,9 @@ public class DeviceClient {
         return result.isSuccess();
     }
 
-    private void send(PutDataRequest putDataRequest) {
+    private void send(byte[] message) {
         if (validateConnection()) {
-            Wearable.DataApi.putDataItem(googleApiClient, putDataRequest).setResultCallback(new ResultCallback<DataApi.DataItemResult>() {
+            Wearable.MessageApi.sendMessage(googleApiClient, putDataRequest).setResultCallback(new ResultCallback<DataApi.DataItemResult>() {
                 @Override
                 public void onResult(DataApi.DataItemResult dataItemResult) {
                     Log.v(TAG, "Sending sensor data: " + dataItemResult.getStatus().isSuccess());
